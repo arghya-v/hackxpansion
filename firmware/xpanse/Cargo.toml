@@ -69,6 +69,9 @@ wardriving-driver = { workspace = true }
 pn532-driver = { workspace = true }
 keebxpansion = { workspace = true }
 nfcxpansion = { workspace = true }
+SD_card_driver = { workspace = true }
+hackxpansion_speaker = { workspace = true }
+audio_jack_firmware = { workspace = true }
 
 # Apps (each behind an `app-*` feature flag)
 doom-app = { workspace = true, optional = true }

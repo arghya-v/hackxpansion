@@ -3,6 +3,20 @@
 version = 4
 
 [[package]]
+name = "SD_card_driver"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "38b1033043a279b81b26f49b74dc686ba85e032e61235d47d5cdff7d05c6f4d4"
+dependencies = [
+ "embassy-rp",
+ "embassy-time 0.5.1",
+ "embedded-hal 1.0.0",
+ "embedded-hal-bus",
+ "embedded-sdmmc 0.10.0",
+ "xpanse-api 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "adler2"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -115,6 +129,12 @@ name = "arbitrary"
 version = "1.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c3d036a3c4ab069c7b410a2ce876bd74808d2d0888a82667669f8e783a898bf1"
+
+[[package]]
+name = "arbitrary-int"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ab387a0c4143b4fd3804e193946e78c8ab16cf26c5fde2048e4ac3d618c3b64"
 
 [[package]]
 name = "arg_enum_proc_macro"
@@ -344,6 +364,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
+name = "audio_jack_firmware"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d45d37b83f577cd486729aa4cb77a6cfe296766f803e48b88b05e14fb479e3bc"
+dependencies = [
+ "embassy-executor",
+ "embassy-rp",
+ "embassy-time 0.5.1",
+ "embedded-hal-async",
+ "xpanse-api 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "auto_enums"
 version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -475,6 +508,17 @@ name = "bit_field"
 version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e4b40c7323adcfc0a41c4b88143ed58346ff65a288fc144329c5c45e05d70c6"
+
+[[package]]
+name = "bitbybit"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bf218b839af0730012cc21856c4149789afde9ae6dc3078c7adaf311e8b76854"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
 
 [[package]]
 name = "bitfield"
@@ -1462,7 +1506,7 @@ dependencies = [
  "document-features",
  "embassy-net-driver",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embedded-io-async 0.7.0",
  "embedded-nal-async",
  "heapless 0.9.3",
@@ -1500,7 +1544,7 @@ dependencies = [
  "defmt 1.1.1",
  "embassy-futures",
  "embassy-net-driver-channel",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
 ]
@@ -1522,7 +1566,7 @@ dependencies = [
  "embassy-futures",
  "embassy-hal-internal 0.5.0",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embassy-time-driver",
  "embassy-time-queue-utils",
  "embassy-usb-driver",
@@ -1559,6 +1603,22 @@ dependencies = [
  "futures-core",
  "futures-sink",
  "heapless 0.9.3",
+]
+
+[[package]]
+name = "embassy-time"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f820157f198ada183ad62e0a66f554c610cdcd1a9f27d4b316358103ced7a1f8"
+dependencies = [
+ "cfg-if",
+ "critical-section",
+ "document-features",
+ "embassy-time-driver",
+ "embedded-hal 0.2.7",
+ "embedded-hal 1.0.0",
+ "embedded-hal-async",
+ "futures-util",
 ]
 
 [[package]]
@@ -1608,7 +1668,7 @@ dependencies = [
  "embassy-futures",
  "embassy-net-driver-channel",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embassy-usb-driver",
  "embedded-io-async 0.7.0",
  "heapless 0.9.3",
@@ -1790,6 +1850,37 @@ dependencies = [
  "embedded-io 0.6.1",
  "heapless 0.8.0",
  "log",
+]
+
+[[package]]
+name = "embedded-sdmmc"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3fc3ac32bcb461732f1cbc1f199ae3c09f150b18ac6f48a560bef91e0d73ca30"
+dependencies = [
+ "arbitrary-int",
+ "bitbybit",
+ "bitflags 2.13.1",
+ "byteorder",
+ "embedded-hal 1.0.0",
+ "embedded-io 0.7.1",
+ "embedded-sdmmc-types",
+ "heapless 0.9.3",
+ "hex-literal",
+ "log",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "embedded-sdmmc-types"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4234384920317421a61a221dd06dda643ee13d95d4a95532a6294b4d01a8852f"
+dependencies = [
+ "arbitrary-int",
+ "bitbybit",
+ "bitflags 2.13.1",
+ "thiserror 2.0.20",
 ]
 
 [[package]]
@@ -2434,6 +2525,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b40ca9252762c466af32d0b1002e91e4e1bc5398f77455e55474deb466355ff5"
 
 [[package]]
+name = "hackxpansion_speaker"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2cf6125bebbfa03b761826aa3bdf466595f837d64b659dd0cfa5ff04aaf1f765"
+dependencies = [
+ "embassy-rp",
+ "embassy-time 0.4.0",
+ "embedded-hal-async",
+ "xpanse-api 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "half"
 version = "2.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2548,6 +2651,12 @@ name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
+
+[[package]]
+name = "hex-literal"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e712f64ec3850b98572bffac52e2c6f282b29fe6c5fa6d42334b30be438d95c1"
 
 [[package]]
 name = "htmlparser"
@@ -6975,7 +7084,9 @@ checksum = "ec7a2a501ed189703dba8b08142f057e887dfc4b2cc4db2d343ac6376ba3e0b9"
 name = "xpanse"
 version = "0.1.0"
 dependencies = [
+ "SD_card_driver",
  "assign-resources",
+ "audio_jack_firmware",
  "button-logger",
  "byte-slice-cast",
  "cortex-m",
@@ -6994,7 +7105,7 @@ dependencies = [
  "embassy-net-wiznet",
  "embassy-rp",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embassy-usb",
  "embassy-usb-logger",
  "embedded-alloc",
@@ -7003,11 +7114,12 @@ dependencies = [
  "embedded-hal-async",
  "embedded-hal-bus",
  "embedded-io-async 0.7.0",
- "embedded-sdmmc",
+ "embedded-sdmmc 0.9.0",
  "embedded-storage",
  "fixed",
  "fixed-macro",
  "four-button-driver",
+ "hackxpansion_speaker",
  "heapless 0.9.3",
  "keebxpansion",
  "libm",
@@ -7043,7 +7155,7 @@ dependencies = [
  "embassy-futures",
  "embassy-rp",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
  "embedded-hal-bus",
@@ -7063,7 +7175,7 @@ dependencies = [
  "embassy-futures",
  "embassy-rp",
  "embassy-sync",
- "embassy-time",
+ "embassy-time 0.5.1",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
  "embedded-hal-bus",

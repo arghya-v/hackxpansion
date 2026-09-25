@@ -118,6 +118,32 @@ Some(id) if id == pn532_driver::Pn532Driver::ID => {
                 }
             }
         }
+       Some(id) if id == audio_jack_firmware::AudioDriver::ID => {
+    match audio_jack_firmware::AudioDriver::create(bank, slot, registry, bus).await {
+        Ok(()) => defmt::info!("Audio driver initialized in {:?}", slot),
+        Err(error) => {
+            defmt::error!("Audio driver init failed in {:?}: {:?}", slot, error)
+        }
+    }
+}
+
+Some(id) if id == SD_card_driver::SdCardDriver::ID => {
+    match SD_card_driver::SdCardDriver::create(bank, slot, registry, bus).await {
+        Ok(()) => defmt::info!("SD card driver initialized in {:?}", slot),
+        Err(error) => {
+            defmt::error!("SD card driver init failed in {:?}: {:?}", slot, error)
+        }
+    }
+}
+
+Some(id) if id == hackxpansion_speaker::SpeakerDriver::ID => {
+    match hackxpansion_speaker::SpeakerDriver::create(bank, slot, registry, bus).await {
+        Ok(()) => defmt::info!("Speaker driver initialized in {:?}", slot),
+        Err(error) => {
+            defmt::error!("Speaker driver init failed in {:?}: {:?}", slot, error)
+        }
+    }
+}
         Some(id) => defmt::warn!("unknown driver id {:?} in {:?}", id, slot),
         None => defmt::info!("no driver to load in {:?}", slot),
     }
